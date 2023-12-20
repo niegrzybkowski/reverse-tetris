@@ -1,3 +1,120 @@
+body {
+    font-family: 'Varela Round', sans-serif;
+}
+
+.container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    min-height: 15vh;
+    line-height: 15vh;
+    text-align: center;
+    font-size: 6vh;
+
+}
+
+#lock {
+    width: 100%;
+    height: 70vh;
+    align-self:flex-start;
+    min-height: 120px;
+    padding-bottom: 10vh;
+}
+
+.message {
+    padding: 1vh;
+    height: 30vh;
+    font-size: 3vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.header {
+    font-size: 3vh;
+    text-align: center;
+}
+
+button.delete-button {
+    background-color: darkred;
+    color: whitesmoke;
+    border: none;
+    height: 3vh;
+    font-size: 2vh;
+    border-radius: 0.5vh;
+}
+button.delete-button:active {
+    background-color: crimson;
+    color: whitesmoke;
+    border: none;
+    height: 3vh;
+    font-size: 2vh;
+    border-radius: 0.5vh;
+}
+
+.pattern-list {
+    padding: 2vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1vh;
+}
+
+.hint {
+    height: 15vh;
+}
+
+.hint .empty rect {
+    stroke: transparent;
+    fill: lightsalmon;
+    display: inherit;
+}
+
+.hint .filled rect {
+    stroke: transparent;
+    fill: deepskyblue;
+    display: inherit;
+}
+
+.hidden {
+    display: none;
+}
+
+.top-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 2vh;
+    padding-right: 2vh;
+}
+
+.pattern {
+    background-color: lightgray;
+    width: 15vh;
+    animation: lock-activate-dot .15s 0s ease 1;
+}
+
+.pattern .empty rect {
+    stroke: transparent;
+    fill: lightsalmon;
+}
+
+.pattern .filled rect {
+    stroke: transparent;
+    fill: deepskyblue;
+}
+
 svg.patternlock g.lock-lines line {
     stroke-width: 1.5;
     stroke: black;
@@ -22,8 +139,8 @@ svg.patternlock g.lock-actives circle {
 svg.patternlock g.constant-lines line {
     stroke-width: 1.5;
     stroke: black;
-    opacity: 0.5;
-    stroke-width: 1.5;
+    opacity: 1.0;
+    stroke-width: 2;
     stroke-linecap: round;
 }
 

@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="patternlock.css">
+        <title>Reverse Tetris - Pattern List</title>
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+        <script
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+        <script src="reverse-tetris.js"></script>
+        <script type="text/javascript">
+            const squareSize = 6; // todo: unfuck this
+            const patternList = () => {
+                var foundPatterns = window.localStorage.getItem("foundPatterns");
+                var orderIndex = window.localStorage.getItem("orderIndex");
+                console.log("yeah")
+                if (orderIndex === null) {
+                    $("#count").text("None");
+                    return;
+                }
+                $("#count").text(Number(orderIndex));
+                let parsedPatterns = JSON.parse(foundPatterns);
+                parsedPatterns = Object.values(parsedPatterns).toSorted((x, y) => x.order - y.order);
+                for (pattern of parsedPatterns) {
+                    let svg = $($("template").html()).clone();
+                    svg.addClass("hidden");
+                    drawPatternInHint(pattern.pattern, squareSize, svg);
+                    $("#pattern-list").append(svg);
+                    setTimeout(()=>{svg.addClass("pattern"); svg.removeClass("hidden")}, 10 * pattern.order)
+                }
+            }
+            const clearPatterns = () => {
+                if (confirm("Are you sure you want to delete ALL patterns found so far?")) {
+                    window.localStorage.clear()
+                    window.location = ".."
+                }
+            };
+            window.onload = patternList;
+        </script>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: auto;
+            }
+        </style>
+    </head>
+    <body>
+    <div style="margin: auto; max-width: 800px;">
+        <h1>Pattern List</h1>
+        <div class="header">
+            <p><span id="count">0</span> found</p>
+            <div class="top-option">
+                <a href="..">Go back</a>
+                <button class="delete-button" onclick="clearPatterns()">Clear patterns</button>
+            </div>
+        </div>
+        <div id="pattern-list" class="pattern-list">
+            <template>
+                <svg class="hidden" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                    <g class="filled"></g>
+                    <g class="empty"></g>
+                </svg>
+            </template>
+        </div>
+    </div>
+    </body>
+</html>

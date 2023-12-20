@@ -37,7 +37,7 @@
         }
     }
 
-    function PatternLock(element, options) {
+    function PatternLock(element, dotGridSize, options) {
         let svg = $(element)
         let self = this
         let root = svg[0]
@@ -155,9 +155,8 @@
         }
 
         function isAvailable(target) {
-            const size = 5;
             for (let i = 0; i < dots.length; i++) {
-                // && Math.floor(i / size) == 0
+                // && Math.floor(i / dotGridSize) == 0
                 if (dots[i] === target && code.length == 0 ) {
                     return true
                 }
@@ -165,16 +164,16 @@
                     let last_node = code[code.length - 1];
                     let last_node_index = dots.index(last_node);
 
-                    if (last_node_index % size != 0 && i == last_node_index - 1) {
+                    if (last_node_index % dotGridSize != 0 && i == last_node_index - 1) {
                         return true;
                     }
-                    if (last_node_index % size != size - 1 && i == last_node_index + 1) {
+                    if (last_node_index % dotGridSize != dotGridSize - 1 && i == last_node_index + 1) {
                         return true;
                     }
-                    if (Math.floor(last_node_index / size) != 0 && i == last_node_index - size) {
+                    if (Math.floor(last_node_index / dotGridSize) != 0 && i == last_node_index - dotGridSize) {
                         return true;
                     }
-                    if (Math.floor(last_node_index / size) != size-1 && i == last_node_index + size) {
+                    if (Math.floor(last_node_index / dotGridSize) != dotGridSize-1 && i == last_node_index + dotGridSize) {
                         return true;
                     }
                 }
