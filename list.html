@@ -32,7 +32,7 @@
             const clearPatterns = () => {
                 if (confirm("Are you sure you want to delete ALL patterns found so far?")) {
                     window.localStorage.clear()
-                    window.location = ".."
+                    window.location = "."
                 }
             };
             window.onload = patternList;
@@ -53,7 +53,7 @@
         <div class="header">
             <p><span id="count">0</span> found</p>
             <div class="top-option">
-                <a href="..">Go back</a>
+                <a href=".">Go back</a>
                 <button class="delete-button" onclick="clearPatterns()">Clear patterns</button>
             </div>
         </div>
