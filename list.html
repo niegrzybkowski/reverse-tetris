@@ -26,7 +26,7 @@
                     svg.addClass("hidden");
                     drawPatternInHint(pattern.pattern, squareSize, svg);
                     $("#pattern-list").append(svg);
-                    setTimeout(()=>{svg.addClass("pattern"); svg.removeClass("hidden")}, 10 * pattern.order)
+                    setTimeout(()=>{svg.addClass("pattern"); svg.removeClass("hidden")}, 50 * pattern.order)
                 }
             }
             const clearPatterns = () => {
