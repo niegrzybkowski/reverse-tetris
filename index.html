@@ -155,19 +155,40 @@
                 }
                 return true;
             };
+
+            const verticalSymmetryComplement = (matrix) => {
+                const newMatrix = [];
+                for (let line of matrix) {
+                    const newLine = new Array(line.length);
+                    for (let i = 0; i < line.length/2; i++) {
+                        newLine[i] = Math.abs(line[line.length - i - 1] - 1);
+                        newLine[line.length - i - 1] = Math.abs(line[i] - 1);
+                    }
+                    newMatrix.push(newLine);
+                }
+                return newMatrix
+            };
+
             if (!isRotationallySymmetric()) {
                 this.error();
                 return;
             }
             let fixed = fixOrientation(squares, squareSize);
+            let fixedVerticallySymmetric = verticalSymmetryComplement(
+                chunkArrayInGroups(fixed, squareSize)
+            ).flat();
             let fixedKey = fixed.join("");
+            let fixedVSKey = fixedVerticallySymmetric.join("");
             console.log(fixedKey)
+            console.log(fixedVSKey)
             console.log(foundPatterns)
-            if (fixedKey in foundPatterns) {
-                this.error();
-                $("#messageText").text("Pattern equivalent to already found: ")
-                drawPatternInHint(foundPatterns[fixedKey].pattern, squareSize);
-                return;
+            for (let key of [fixedKey, fixedVSKey]){
+                if (key in foundPatterns) {
+                    this.error();
+                    $("#messageText").text("Pattern equivalent to already found: ")
+                    drawPatternInHint(foundPatterns[key].pattern, squareSize);
+                    return;
+                }
             }
             foundPatterns[fixedKey] = {
                 pattern: squares,
