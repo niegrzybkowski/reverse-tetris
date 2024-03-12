@@ -13,4 +13,8 @@ Inspired by [VSauce video (youtube.com)](https://www.youtube.com/watch?v=VXLriB4
 Using adapted pattern lock code from [Tympanix/pattern-lock-js](https://github.com/Tympanix/pattern-lock-js).
 
 ## Screenshots
-WIP
+![success](docs/success.png)
+
+![duplicate](docs/duplicate.png)
+
+![high-score](docs/high-score.jpg)
